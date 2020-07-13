@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'latest',
-    description: 'Retrieves latest Vast Error update.',
+    description: 'Retrieves a summary of the most recent Vast Error update.',
     async execute(msg, args) {
       // Grabbing latest page data from DCRC API
       var latest = await axios.get(`https://www.deconreconstruction.com/api/vasterror/pages/latest`);
@@ -14,7 +14,7 @@ module.exports = {
       const length = latest.length;
       const first = latest[0].pageNumber;
       const last = latest[latest.length - 1].pageNumber;
-      const panelExp = /https\:\/\/cdn\.deconreconstruction\.com\/vasterror\/panels\/[0-9_]+\.gif/g
+      const panelExp = /https\:\/\/cdn\.deconreconstruction\.com\/vasterror\/panels\/[0-9_]+\.(gif|png)/g
       var panel = latest[0].body.match(panelExp);
       if (panel.length >= 1) {
         panel = panel[0];

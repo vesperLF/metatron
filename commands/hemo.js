@@ -319,12 +319,12 @@ module.exports = {
       shadeIndex: ''
     };
 
-    for (let hemoRange in hemoRanges) {
+    for (let hemoRange of hemoRanges) {
       let isWraparound = hemoRange.range.min > hemoRange.range.max;
       let isOverMin = hemoRange.range.min <= hsb.h;
       let isUnderMax = hsb.h <= hemoRange.range.max;
       
-      if (isWraparound != (isOverMin && isUnderMax)) {
+      if (isWraparound == (isOverMin && isUnderMax)) {
         hemo.caste = hemoRange.caste;
         
         if (hsb.b <= 32) {

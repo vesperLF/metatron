@@ -11,12 +11,18 @@ module.exports = {
             {
                 name: '>+help',
                 value: "Lists the available METATRON bot commands.",
-                inline: true
+            },
+			{
+              name: '>+hemo _[HEXCODE]_',
+              value: "Returns a detailed hemospectrum analysis of a given hex code."
             },
             {
-                name: '>+latest',
-                value: 'Retrieves a summary of the most recent Vast Error update.',
-                inline: true
+                name: '>+latest _[ve|tt]_',
+                value: 'Retrieves a summary of the most recent update to a given story; by default, returns the most recent Vast Error update.',
+            },
+			{
+                name: '>+verandom',
+                value: 'Retrieves a random Vast Error page.',
             },
         ]
       };

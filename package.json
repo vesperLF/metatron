@@ -1,16 +1,15 @@
 {
   "name": "metatron",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Discord bot for the Vast Error server complete with comic-specific commands",
   "main": "metatron.js",
   "scripts": {
-
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node metatron.js"
   },
   "author": "Kohi",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0"
   }

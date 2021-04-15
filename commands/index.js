@@ -1,4 +1,6 @@
 module.exports = {
-    Help: require('./help'),
-    Latest: require('./latest'),
-  };
+  Help: require('./help'),
+Hemo: require('./hemo'),
+  Latest: require('./latest'),
+Verandom: require('./verandom'),
+};

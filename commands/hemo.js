@@ -351,13 +351,13 @@ module.exports = {
 
     hemo.caste = hemoRanges[hemo.casteIndex].caste;
 
-    if (0 <= hsb.b && hsb.b <= 32) {
+    if (hsb.b <= 32) {
       hemo.shade = hemoRanges[hemo.casteIndex].shade.min;
       hemo.shadeIndex = 'min';
-    } else if (33 <= hsb.b && hsb.b <= 66) {
+    } else if (hsb.b <= 66) {
       hemo.shade = hemoRanges[hemo.casteIndex].shade.med;
       hemo.shadeIndex = 'med';
-    } else if (67 <= hsb.b && hsb.b <= 100) {
+    } else {
       hemo.shade = hemoRanges[hemo.casteIndex].shade.max;
       hemo.shadeIndex = 'max';
     }

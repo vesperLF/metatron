@@ -16,7 +16,7 @@ bot.login(TOKEN);
 bot.on('ready', () => {
   console.info(`Logged in as ${bot.user.tag}!`);
   bot.user.setPresence({
-	 game: {
+	 activity: {
 		 name: '>+help'
 	 } 
   });

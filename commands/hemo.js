@@ -229,16 +229,16 @@ module.exports = {
             gc = parseFloat(cmax-rgb.g) / parseFloat(cmax-cmin);
             bc = parseFloat(cmax-rgb.b) / parseFloat(cmax-cmin);
 
-          if (rgb.r == cmax)
-            hsb.h = parseFloat(bc - gc);
-          else if (rgb.g == cmax)
-            hsb.h = 2. + parseFloat(rc - bc);
-          else
-            hsb.h = 4. + parseFloat(gc - rc);
+			if (rgb.r == cmax)
+				hsb.h = parseFloat(bc - gc);
+			else if (rgb.g == cmax)
+				hsb.h = 2. + parseFloat(rc - bc);
+			else
+				hsb.h = 4. + parseFloat(gc - rc);
 
-          hsb.h = parseFloat(hsb.h) / 6.;
-          if (hsb.h < 0)
-            hsb.h = (hsb.h + 1.);
+			hsb.h = parseFloat(hsb.h) / 6.;
+			if (hsb.h < 0)
+				hsb.h = hsb.h + 1.;
           }
 
           hsb.h = Math.round(hsb.h * 360.);

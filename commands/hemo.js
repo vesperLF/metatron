@@ -175,7 +175,7 @@ module.exports = {
             g: parseInt(hex[3], 16),
             b: parseInt(hex[4], 16)
           } : null;
-          hex = `${hex[1]}${hex[2]}${hex[3]}`;
+          hex = `${hex[2]}${hex[3]}${hex[4]}`;
           console.log(hex);
 
           // Converting from RGB to HSB

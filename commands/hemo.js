@@ -258,7 +258,7 @@ module.exports = {
             ]
           };
 
-          if(hemo.caste === 'Lime') {
+          if(hemo.caste === 'Lime' && hsb.s >= 10) {
             let newHemoIndex = hsb.h < 90 ? 2 : 4;
 
             embedResponse.fields.push(
@@ -278,16 +278,28 @@ module.exports = {
           }
 
           embedResponse.fields.push(
-            {
-              name: 'Caste',
-              value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
-              inline: false
-            },
-            {
-              name: 'Subshade',
-              value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
-              inline: false
-            }
+            hsb.s >= 10 ?
+              {
+                name: 'Caste',
+                value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
+                inline: false
+              },
+              {
+                name: 'Subshade',
+                value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
+                inline: false
+              } :
+              {
+                name: 'Caste',
+                value: `The Saturation value of ${hsb.s} is too low to place this blood color in **any** blood caste.`,
+                inline: false
+              },
+              {
+                name: 'Subshade',
+                value: `As this blood color does not exist, it is not in **any** subshade.`,
+                inline: false
+              }
+            
           );
           embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
           

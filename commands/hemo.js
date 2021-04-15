@@ -306,7 +306,8 @@ module.exports = {
           msg.channel.send({ embed: embedResponse });
 
         } catch (err) {
-          msg.channel.send(err);
+          if (err.length > 0)
+            msg.channel.send(err);
         }
     },
   };

@@ -330,7 +330,7 @@ module.exports = {
               inline: false
             }
           );
-          embedResponse.title = `Hemospectrum | ${hemo.caste}ยง${hemo.shade}`;
+          embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
           
           msg.channel.send({ embed: embedResponse });
 

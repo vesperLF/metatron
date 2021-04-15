@@ -158,7 +158,7 @@ module.exports = {
 
           //console.log("HEX: " + hex);
 
-          hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+          hex = hex.replace(shorthandRegex, function(m, n, r, g, b) {
             return r + r + g + g + b + b;
           });
 
@@ -258,7 +258,7 @@ module.exports = {
             ]
           };
 
-          if(hemo.caste === 'Lime' && hsb.s >= 10) {
+          if (hemo.caste === 'Lime' && hsb.s >= 10) {
             let newHemoIndex = hsb.h < 90 ? 2 : 4;
 
             embedResponse.fields.push(
@@ -277,8 +277,8 @@ module.exports = {
               hemo.shade = hemoRanges[newHemoIndex].shade.max;
           }
 
-          embedResponse.fields.push(
-            hsb.s >= 10 ?(
+          if (hsb.s >= 10)
+            embedResponse.fields.push(
               {
                 name: 'Caste',
                 value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
@@ -288,19 +288,22 @@ module.exports = {
                 name: 'Subshade',
                 value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
                 inline: false
-              }) :
-              ({
+              }
+            );
+          else
+            embedResponse.fields.push(
+              {
                 name: 'Caste',
-                value: `The Saturation value of ${hsb.s} is too low to place this blood color in **any** blood caste.`,
+                value: `The Saturation value of ${hsb.s} is **too low** to place this blood color in any blood caste.`,
                 inline: false
               },
               {
                 name: 'Subshade',
-                value: `As this blood color does not exist, it is not in **any** subshade.`,
+                value: `As this blood color **does not exist**, it is not in any subshade.`,
                 inline: false
-              })
-            
+              }
           );
+
           embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
           
           msg.channel.send({ embed: embedResponse });
@@ -323,8 +326,7 @@ module.exports = {
       let isWraparound = hemoRange.range.min > hemoRange.range.max;
       let isOverMin = hemoRange.range.min <= hsb.h;
       let isUnderMax = hsb.h <= hemoRange.range.max;
-      
-      if (isWraparound == (isOverMin && isUnderMax)) {
+      if (isWraparound ? (isOverMin != isUnderMax ) : (isOverMin && isUnderMax)) {
         hemo.caste = hemoRange.caste;
         
         if (hsb.b <= 32) {

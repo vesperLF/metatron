@@ -62,7 +62,7 @@ const hemoRanges = [
   {
     caste: "Green",
     shade: {
-      min: "Ochre",
+      min: "Pine",
       med: "Olive",
       max: "Clover"
     },

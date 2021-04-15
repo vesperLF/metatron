@@ -6,16 +6,10 @@ const hemoRanges = [
       med: "Rust",
       max: "Scarlet"
     },
-    range: [
-      {
-        min: 0,
-        max: 15
-      },
-      {
-        min: 346,
-        max: 360
-      }
-    ]
+    range: {
+      min: 346,
+      max: 15
+    }
   },
   {
     caste: "Bronze",
@@ -24,12 +18,10 @@ const hemoRanges = [
       med: "Cola",
       max: "Clay"
     },
-    range: [
-      {
-        min: 16,
-        max: 45
-      }
-    ]
+    range: {
+      min: 16,
+      max: 45
+    }
   },
   {
     caste: "Yellow",
@@ -38,12 +30,10 @@ const hemoRanges = [
       med: "Mustard",
       max: "Gold"
     },
-    range: [
-      {
-        min: 46,
-        max: 75
-      }
-    ]
+    range: {
+      min: 46,
+      max: 75
+    }
   },
   {
     caste: "Lime",
@@ -52,12 +42,10 @@ const hemoRanges = [
       med: "",
       max: ""
     },
-    range: [
-      {
-        min: 76,
-        max: 105
-      }
-    ]
+    range: {
+      min: 76,
+      max: 105
+    }
   },
   {
     caste: "Green",
@@ -66,12 +54,10 @@ const hemoRanges = [
       med: "Olive",
       max: "Clover"
     },
-    range: [
-      {
-        min: 106,
-        max: 135
-      }
-    ]
+    range: {
+      min: 106,
+      max: 135
+    }
   },
   {
     caste: "Jade",
@@ -80,12 +66,10 @@ const hemoRanges = [
       med: "Viridian",
       max: "Fern"
     },
-    range: [
-      {
-        min: 136,
-        max: 165
-      }
-    ]
+    range: {
+      min: 136,
+      max: 165
+    }
   },
   {
     caste: "Teal",
@@ -94,12 +78,10 @@ const hemoRanges = [
       med: "Turquoise",
       max: "Cyan"
     },
-    range: [
-      {
-        min: 166,
-        max: 195
-      }
-    ]
+    range: {
+      min: 166,
+      max: 195
+    }
   },
   {
     caste: "Blue",
@@ -108,12 +90,10 @@ const hemoRanges = [
       med: "Cobalt",
       max: "Aegean"
     },
-    range: [
-      {
-        min: 196,
-        max: 225
-      }
-    ]
+    range: {
+      min: 196,
+      max: 225
+    }
   },
   {
     caste: "Indigo",
@@ -122,12 +102,10 @@ const hemoRanges = [
       med: "Navy",
       max: "Denim"
     },
-    range: [
-      {
-        min: 226,
-        max: 255
-      }
-    ]
+    range: {
+      min: 226,
+      max: 255
+    }
   },
   {
     caste: "Purple",
@@ -136,12 +114,10 @@ const hemoRanges = [
       med: "Jam",
       max: "Amethyst"
     },
-    range: [
-      {
-        min: 256,
-        max: 285
-      }
-    ]
+    range: {
+      min: 256,
+      max: 285
+    }
   },
   {
     caste: "Violet",
@@ -150,12 +126,10 @@ const hemoRanges = [
       med: "Magenta",
       max: "Orchid"
     },
-    range: [
-      {
-        min: 286,
-        max: 315
-      }
-    ]
+    range: {
+      min: 286,
+      max: 315
+    }
   },
   {
     caste: "Fuchsia",
@@ -164,12 +138,10 @@ const hemoRanges = [
       med: "Cerise",
       max: "Rose"
     },
-    range: [
-      {
-        min: 316,
-        max: 345
-      }
-    ]
+    range: {
+      min: 316,
+      max: 345
+    }
   },
 ];
 
@@ -213,8 +185,8 @@ module.exports = {
             b: ''
           };
           var cmax, cmin, rc, gc, bc;
-		  cmax = Math.max(rgb.r, rgb.g, rgb.b);
-		  cmin = Math.min(rgb.r, rgb.g, rgb.b);
+          cmax = Math.max(rgb.r, rgb.g, rgb.b);
+          cmin = Math.min(rgb.r, rgb.g, rgb.b);
           hsb.b = Math.round((parseFloat(cmax) / 255) * 100);
 
           if(cmax != 0)
@@ -229,16 +201,16 @@ module.exports = {
             gc = parseFloat(cmax-rgb.g) / parseFloat(cmax-cmin);
             bc = parseFloat(cmax-rgb.b) / parseFloat(cmax-cmin);
 
-			if (rgb.r == cmax)
-				hsb.h = parseFloat(bc - gc);
-			else if (rgb.g == cmax)
-				hsb.h = 2. + parseFloat(rc - bc);
-			else
-				hsb.h = 4. + parseFloat(gc - rc);
+            if (rgb.r == cmax)
+              hsb.h = parseFloat(bc - gc);
+            else if (rgb.g == cmax)
+              hsb.h = 2. + parseFloat(rc - bc);
+            else
+              hsb.h = 4. + parseFloat(gc - rc);
 
-			hsb.h = parseFloat(hsb.h) / 6.;
-			if (hsb.h < 0)
-				hsb.h = hsb.h + 1.;
+            hsb.h = parseFloat(hsb.h) / 6.;
+            if (hsb.h < 0)
+                hsb.h = hsb.h + 1.;
           }
 
           hsb.h = Math.round(hsb.h * 360.);
@@ -287,12 +259,7 @@ module.exports = {
           };
 
           if(hemo.caste === 'Lime') {
-            let newHemoIndex;
-
-            if (hsb.h < 90)
-              newHemoIndex = 2;
-            else if (hsb.h >= 90)
-              newHemoIndex = 4
+            let newHemoIndex = hsb.h < 90 ? 2 : 4;
 
             embedResponse.fields.push(
               {
@@ -302,13 +269,12 @@ module.exports = {
             );
 
             hemo.caste = hemoRanges[newHemoIndex].caste;
-            hemo.casteIndex = newHemoIndex;
             if (hemo.shadeIndex == 'min')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.min;
+              hemo.shade = hemoRanges[newHemoIndex].shade.min;
             else if (hemo.shadeIndex == 'med')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.med;
-            else if (hemo.shadeIndex == 'max')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.max;
+              hemo.shade = hemoRanges[newHemoIndex].shade.med;
+            else
+              hemo.shade = hemoRanges[newHemoIndex].shade.max;
           }
 
           embedResponse.fields.push(
@@ -336,30 +302,29 @@ module.exports = {
   function HSBtoHemo(hsb) {
     let hemo = {
       caste: '',
-      casteIndex: '',
       shade: '',
       shadeIndex: ''
     };
 
-    for (let i = 0; i < hemoRanges.length; i++) {
-      for(let j = 0; j < hemoRanges[i].range.length; j++) {
-        if(hemoRanges[i].range[j].min <= hsb.h && hsb.h <= hemoRanges[i].range[j].max) {
-          hemo.casteIndex = i;
+    for (let hemoRange in hemoRanges) {
+      let isWraparound = hemoRange.range.min > hemoRange.range.max;
+      let isOverMin = hemoRange.range.min <= hsb.h;
+      let isUnderMax = hsb.h <= hemoRange.range.max;
+      
+      if (isWraparound != (isOverMin && isUnderMax)) {
+        hemo.caste = hemoRange.caste;
+        
+        if (hsb.b <= 32) {
+          hemo.shade = hemoRange.shade.min;
+          hemo.shadeIndex = 'min';
+        } else if (hsb.b <= 66) {
+          hemo.shade = hemoRange.shade.med;
+          hemo.shadeIndex = 'med';
+        } else {
+          hemo.shade = hemoRange.shade.max;
         }
+        break;
       }
-    }
-
-    hemo.caste = hemoRanges[hemo.casteIndex].caste;
-
-    if (hsb.b <= 32) {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.min;
-      hemo.shadeIndex = 'min';
-    } else if (hsb.b <= 66) {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.med;
-      hemo.shadeIndex = 'med';
-    } else {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.max;
-      hemo.shadeIndex = 'max';
     }
 
     console.log(hemo);

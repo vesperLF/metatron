@@ -154,7 +154,7 @@ module.exports = {
             throw "ERROR: No hex code supplied."
 
           let hex = args[0];
-          var shorthandRegex = /^(#|0x|0X)?([a-f\d])([a-f\d])([a-f\d])$/i;
+          var shorthandRegex = /^(#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i;
 
           //console.log("HEX: " + hex);
 
@@ -164,16 +164,16 @@ module.exports = {
 
           //console.log("HEX: " + hex);
 
-          hex = /^(#|0x|0X)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          hex = /^(#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
           //console.log(hex === null)
           if (hex === null)
             throw "ERROR: Not a valid hex code."
 
           //console.log("RESULT: " + hex);
           let rgb = hex ? {
-            r: parseInt(hex[1], 16),
-            g: parseInt(hex[2], 16),
-            b: parseInt(hex[3], 16)
+            r: parseInt(hex[2], 16),
+            g: parseInt(hex[3], 16),
+            b: parseInt(hex[4], 16)
           } : null;
           hex = `${hex[1]}${hex[2]}${hex[3]}`;
           console.log(hex);

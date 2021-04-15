@@ -278,7 +278,7 @@ module.exports = {
           }
 
           embedResponse.fields.push(
-            hsb.s >= 10 ?
+            hsb.s >= 10 ?(
               {
                 name: 'Caste',
                 value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
@@ -288,8 +288,8 @@ module.exports = {
                 name: 'Subshade',
                 value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
                 inline: false
-              } :
-              {
+              }) :
+              ({
                 name: 'Caste',
                 value: `The Saturation value of ${hsb.s} is too low to place this blood color in **any** blood caste.`,
                 inline: false
@@ -298,7 +298,7 @@ module.exports = {
                 name: 'Subshade',
                 value: `As this blood color does not exist, it is not in **any** subshade.`,
                 inline: false
-              }
+              })
             
           );
           embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;

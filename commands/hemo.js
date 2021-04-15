@@ -213,12 +213,8 @@ module.exports = {
             b: ''
           };
           var cmax, cmin, rc, gc, bc;
-          cmax = (rgb.r > rgb.g) ? rgb.r : rgb.g;
-          if (rgb.b > cmax)
-            cmax = rgb.b;
-          cmin = (rgb.r < rgb.g) ? rgb.r : rgb.g;
-          if (rgb.b < cmin)
-            cmin = rgb.b;
+		  cmax = Math.max(rgb.r, rgb.g, rgb.b);
+		  cmin = Math.min(rgb.r, rgb.g, rgb.b);
           hsb.b = Math.round((parseFloat(cmax) / 255) * 100);
 
           if(cmax != 0)

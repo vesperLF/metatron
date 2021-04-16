@@ -6,16 +6,10 @@ const hemoRanges = [
       med: "Rust",
       max: "Scarlet"
     },
-    range: [
-      {
-        min: 0,
-        max: 15
-      },
-      {
-        min: 346,
-        max: 360
-      }
-    ]
+    range: {
+      min: 346,
+      max: 15
+    }
   },
   {
     caste: "Bronze",
@@ -24,12 +18,10 @@ const hemoRanges = [
       med: "Cola",
       max: "Clay"
     },
-    range: [
-      {
-        min: 16,
-        max: 45
-      }
-    ]
+    range: {
+      min: 16,
+      max: 45
+    }
   },
   {
     caste: "Yellow",
@@ -38,12 +30,10 @@ const hemoRanges = [
       med: "Mustard",
       max: "Gold"
     },
-    range: [
-      {
-        min: 46,
-        max: 75
-      }
-    ]
+    range: {
+      min: 46,
+      max: 75
+    }
   },
   {
     caste: "Lime",
@@ -52,12 +42,10 @@ const hemoRanges = [
       med: "",
       max: ""
     },
-    range: [
-      {
-        min: 76,
-        max: 105
-      }
-    ]
+    range: {
+      min: 76,
+      max: 105
+    }
   },
   {
     caste: "Green",
@@ -66,12 +54,10 @@ const hemoRanges = [
       med: "Olive",
       max: "Clover"
     },
-    range: [
-      {
-        min: 106,
-        max: 135
-      }
-    ]
+    range: {
+      min: 106,
+      max: 135
+    }
   },
   {
     caste: "Jade",
@@ -80,12 +66,10 @@ const hemoRanges = [
       med: "Viridian",
       max: "Fern"
     },
-    range: [
-      {
-        min: 136,
-        max: 165
-      }
-    ]
+    range: {
+      min: 136,
+      max: 165
+    }
   },
   {
     caste: "Teal",
@@ -94,12 +78,10 @@ const hemoRanges = [
       med: "Turquoise",
       max: "Cyan"
     },
-    range: [
-      {
-        min: 166,
-        max: 195
-      }
-    ]
+    range: {
+      min: 166,
+      max: 195
+    }
   },
   {
     caste: "Blue",
@@ -108,12 +90,10 @@ const hemoRanges = [
       med: "Cobalt",
       max: "Aegean"
     },
-    range: [
-      {
-        min: 196,
-        max: 225
-      }
-    ]
+    range: {
+      min: 196,
+      max: 225
+    }
   },
   {
     caste: "Indigo",
@@ -122,12 +102,10 @@ const hemoRanges = [
       med: "Navy",
       max: "Denim"
     },
-    range: [
-      {
-        min: 226,
-        max: 255
-      }
-    ]
+    range: {
+      min: 226,
+      max: 255
+    }
   },
   {
     caste: "Purple",
@@ -136,12 +114,10 @@ const hemoRanges = [
       med: "Jam",
       max: "Amethyst"
     },
-    range: [
-      {
-        min: 256,
-        max: 285
-      }
-    ]
+    range: {
+      min: 256,
+      max: 285
+    }
   },
   {
     caste: "Violet",
@@ -150,12 +126,10 @@ const hemoRanges = [
       med: "Magenta",
       max: "Orchid"
     },
-    range: [
-      {
-        min: 286,
-        max: 315
-      }
-    ]
+    range: {
+      min: 286,
+      max: 315
+    }
   },
   {
     caste: "Fuchsia",
@@ -164,12 +138,10 @@ const hemoRanges = [
       med: "Cerise",
       max: "Rose"
     },
-    range: [
-      {
-        min: 316,
-        max: 345
-      }
-    ]
+    range: {
+      min: 316,
+      max: 345
+    }
   },
 ];
 
@@ -182,28 +154,28 @@ module.exports = {
             throw "ERROR: No hex code supplied."
 
           let hex = args[0];
-          var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+          var shorthandRegex = /^(#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i;
 
           //console.log("HEX: " + hex);
 
-          hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+          hex = hex.replace(shorthandRegex, function(m, n, r, g, b) {
             return r + r + g + g + b + b;
           });
 
           //console.log("HEX: " + hex);
 
-          hex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          hex = /^(#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
           //console.log(hex === null)
           if (hex === null)
             throw "ERROR: Not a valid hex code."
 
           //console.log("RESULT: " + hex);
           let rgb = hex ? {
-            r: parseInt(hex[1], 16),
-            g: parseInt(hex[2], 16),
-            b: parseInt(hex[3], 16)
+            r: parseInt(hex[2], 16),
+            g: parseInt(hex[3], 16),
+            b: parseInt(hex[4], 16)
           } : null;
-          hex = `${hex[1]}${hex[2]}${hex[3]}`;
+          hex = `${hex[2]}${hex[3]}${hex[4]}`;
           console.log(hex);
 
           // Converting from RGB to HSB
@@ -213,12 +185,8 @@ module.exports = {
             b: ''
           };
           var cmax, cmin, rc, gc, bc;
-          cmax = (rgb.r > rgb.g) ? rgb.r : rgb.g;
-          if (rgb.b > cmax)
-            cmax = rgb.b;
-          cmin = (rgb.r < rgb.g) ? rgb.r : rgb.g;
-          if (rgb.b < cmin)
-            cmin = rgb.b;
+          cmax = Math.max(rgb.r, rgb.g, rgb.b);
+          cmin = Math.min(rgb.r, rgb.g, rgb.b);
           hsb.b = Math.round((parseFloat(cmax) / 255) * 100);
 
           if(cmax != 0)
@@ -233,16 +201,16 @@ module.exports = {
             gc = parseFloat(cmax-rgb.g) / parseFloat(cmax-cmin);
             bc = parseFloat(cmax-rgb.b) / parseFloat(cmax-cmin);
 
-          if (rgb.r == cmax)
-            hsb.h = parseFloat(bc - gc);
-          else if (rgb.g == cmax)
-            hsb.h = 2. + parseFloat(rc - bc);
-          else
-            hsb.h = 4. + parseFloat(gc - rc);
+            if (rgb.r == cmax)
+              hsb.h = parseFloat(bc - gc);
+            else if (rgb.g == cmax)
+              hsb.h = 2. + parseFloat(rc - bc);
+            else
+              hsb.h = 4. + parseFloat(gc - rc);
 
-          hsb.h = parseFloat(hsb.h) / 6.;
-          if (hsb.h < 0)
-            hsb.h = (hsb.h + 1.);
+            hsb.h = parseFloat(hsb.h) / 6.;
+            if (hsb.h < 0)
+                hsb.h = hsb.h + 1.;
           }
 
           hsb.h = Math.round(hsb.h * 360.);
@@ -290,13 +258,8 @@ module.exports = {
             ]
           };
 
-          if(hemo.caste === 'Lime') {
-            let newHemoIndex;
-
-            if (hsb.h < 90)
-              newHemoIndex = 2;
-            else if (hsb.h >= 90)
-              newHemoIndex = 4
+          if (hemo.caste === 'Lime' && hsb.s >= 10) {
+            let newHemoIndex = hsb.h < 90 ? 2 : 4;
 
             embedResponse.fields.push(
               {
@@ -306,33 +269,48 @@ module.exports = {
             );
 
             hemo.caste = hemoRanges[newHemoIndex].caste;
-            hemo.casteIndex = newHemoIndex;
             if (hemo.shadeIndex == 'min')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.min;
+              hemo.shade = hemoRanges[newHemoIndex].shade.min;
             else if (hemo.shadeIndex == 'med')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.med;
-            else if (hemo.shadeIndex == 'max')
-              hemo.shade = hemoRanges[hemo.casteIndex].shade.max;
+              hemo.shade = hemoRanges[newHemoIndex].shade.med;
+            else
+              hemo.shade = hemoRanges[newHemoIndex].shade.max;
           }
 
-          embedResponse.fields.push(
-            {
-              name: 'Caste',
-              value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
-              inline: false
-            },
-            {
-              name: 'Subshade',
-              value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
-              inline: false
-            }
+          if (hsb.s >= 10)
+            embedResponse.fields.push(
+              {
+                name: 'Caste',
+                value: `The Hue value of ${hsb.h} places this blood color in the **${hemo.caste}blood** caste.`,
+                inline: false
+              },
+              {
+                name: 'Subshade',
+                value: `The Brightness value of ${hsb.b} places this blood color in the **${hemo.shade}blood** subshade.`,
+                inline: false
+              }
+            );
+          else
+            embedResponse.fields.push(
+              {
+                name: 'Caste',
+                value: `The Saturation value of ${hsb.s} is **too low** to place this blood color in any blood caste.`,
+                inline: false
+              },
+              {
+                name: 'Subshade',
+                value: `As this blood color **does not exist**, it is not in any subshade.`,
+                inline: false
+              }
           );
+
           embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
           
           msg.channel.send({ embed: embedResponse });
 
         } catch (err) {
-          msg.channel.send(err);
+          if (err.length > 0)
+            msg.channel.send(err);
         }
     },
   };
@@ -340,30 +318,28 @@ module.exports = {
   function HSBtoHemo(hsb) {
     let hemo = {
       caste: '',
-      casteIndex: '',
       shade: '',
       shadeIndex: ''
     };
 
-    for (let i = 0; i < hemoRanges.length; i++) {
-      for(let j = 0; j < hemoRanges[i].range.length; j++) {
-        if(hemoRanges[i].range[j].min <= hsb.h && hsb.h <= hemoRanges[i].range[j].max) {
-          hemo.casteIndex = i;
+    for (let hemoRange of hemoRanges) {
+      let isWraparound = hemoRange.range.min > hemoRange.range.max;
+      let isOverMin = hemoRange.range.min <= hsb.h;
+      let isUnderMax = hsb.h <= hemoRange.range.max;
+      if (isWraparound ? (isOverMin != isUnderMax ) : (isOverMin && isUnderMax)) {
+        hemo.caste = hemoRange.caste;
+        
+        if (hsb.b <= 32) {
+          hemo.shade = hemoRange.shade.min;
+          hemo.shadeIndex = 'min';
+        } else if (hsb.b <= 66) {
+          hemo.shade = hemoRange.shade.med;
+          hemo.shadeIndex = 'med';
+        } else {
+          hemo.shade = hemoRange.shade.max;
         }
+        break;
       }
-    }
-
-    hemo.caste = hemoRanges[hemo.casteIndex].caste;
-
-    if (0 <= hsb.b && hsb.b <= 32) {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.min;
-      hemo.shadeIndex = 'min';
-    } else if (33 <= hsb.b && hsb.b <= 66) {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.med;
-      hemo.shadeIndex = 'med';
-    } else if (67 <= hsb.b && hsb.b <= 100) {
-      hemo.shade = hemoRanges[hemo.casteIndex].shade.max;
-      hemo.shadeIndex = 'max';
     }
 
     console.log(hemo);

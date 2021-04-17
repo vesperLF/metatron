@@ -277,7 +277,22 @@ module.exports = {
               hemo.shade = hemoRanges[newHemoIndex].shade.max;
           }
 
-          if (hsb.s >= 10)
+          if (hsb.s < 10) {
+            embedResponse.title = `Hemospectrum | Invalid Shade`;
+            embedResponse.fields.push(
+              {
+                name: 'Caste',
+                value: `The Saturation value of ${hsb.s} is **too low** to place this blood color in any blood caste.`,
+                inline: false
+              },
+              {
+                name: 'Subshade',
+                value: `As this blood color **does not exist**, it is not in any subshade.`,
+                inline: false
+              }
+            );
+          } else {
+            embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
             embedResponse.fields.push(
               {
                 name: 'Caste',
@@ -290,21 +305,7 @@ module.exports = {
                 inline: false
               }
             );
-          else
-            embedResponse.fields.push(
-              {
-                name: 'Caste',
-                value: `The Saturation value of ${hsb.s} is **too low** to place this blood color in any blood caste.`,
-                inline: false
-              },
-              {
-                name: 'Subshade',
-                value: `As this blood color **does not exist**, it is not in any subshade.`,
-                inline: false
-              }
-          );
-
-          embedResponse.title = `Hemospectrum | ${hemo.caste}§${hemo.shade}`;
+          }
           
           msg.channel.send({ embed: embedResponse });
 

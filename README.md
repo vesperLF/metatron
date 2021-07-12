@@ -1,7 +1,7 @@
 # Metatron
 Discord bot developed for DCRC community servers.
 
-##Usage
+## Usage
 Commands for this bot follow the structure 
 | Command | Description |
 | --- | --- |

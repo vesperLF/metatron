@@ -1,6 +1,7 @@
 module.exports = {
   Help: require('./help'),
-Hemo: require('./hemo'),
+  Hemo: require('./hemo'),
   Latest: require('./latest'),
-Verandom: require('./verandom'),
+  Songrandom: require ('./songrandom'),
+  Verandom: require('./verandom'),
 };

@@ -18,6 +18,10 @@ module.exports = {
                 name: '>+latest _[ve|tt]_',
                 value: 'Retrieves a summary of the most recent update to a given story; by default, returns the most recent Vast Error update.',
             },
+            {
+                name: '>+songrandom',
+                value: 'Retrieves a random VEMT song.',
+            },
 			{
                 name: '>+verandom',
                 value: 'Retrieves a random Vast Error page.',
